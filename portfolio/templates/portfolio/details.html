@@ -1,0 +1,42 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="jumbotron" style="background-image: url({% static 'portfolio/bkg/bkg_7.jpg' %}); background-size: cover;">
+<h1 class="font-weight-bolder text-light">Total value: {{portfolio.get_portfolio_value}} USD</h1>
+<h2>{% for item in cryptos %} <img alt="{{item}}" src="{% get_static_prefix %}portfolio/{{item}}.jpg"> {% endfor %}</h2></div>
+
+<table class="table table-white table-hover">
+    <thead>
+        <tr>
+            <th>Cryptocurrency</th>
+            <th>Quantity</th>
+            <th>Date of adding</th>
+            <th>Initial value</th>
+            <th>Value</th>
+            <th>Change</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+    {% for item in updates %}
+      <tr>
+            <th>{{item.crypto.name}} <img alt="{{item.crypto.name}}" src="{% get_static_prefix %}portfolio/{{item.crypto.name}}.jpg"></th>
+            <th>{{item.crypto_quantity}}</th>
+            <th>{{item.created}}</th>
+            <th>{{item.amount_usd}} USD</th>
+            <th>{{item.get_value}} USD</th>
+            <th>{{item.get_change}} USD</th>
+            <th><th><a href="{% url 'portfolio:delete_position' id=item.id %}" style="text-decoration:none;">Delete position</a></th>
+      </tr>
+    {% endfor %}
+
+
+    <th><a href="{% url 'portfolio:update_portfolio' name=portfolio.name %}" >New position</a></th>
+    <th><a href="{% url 'portfolio:delete_portfolio' name=portfolio.name %}" >Delete portfolio</a></th>
+
+
+    </tbody>
+</table>
+{% endblock content %}

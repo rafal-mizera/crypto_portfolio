@@ -1,0 +1,14 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="jumbotron" style="background-image: url({% static 'portfolio/bkg/bkg_7.jpg' %}); background-size: cover;">
+<form action="" method="post" novalidate class="font-weight-bolder text-light">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Create now">
+</form>
+</div>
+
+{% endblock content %}

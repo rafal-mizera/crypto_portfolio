@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>{% block head_title %}Portfolio Creator {% endblock head_title %}</title>
+    <style type="text/css">
+        body {
+          background-image: url({% static "portfolio/bkg/bkg_5.jpg" %});
+          background-size: cover;
+        }
+        </style>
+
+</head>
+
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      {% if user.is_authenticated %}
+
+      <li class="nav-item ">
+        <a class="nav-link" href="/portfolioapp/logout">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Logged as {{user.username}}</a>
+      <li class="nav-item">
+        <a class="nav-link" href="/portfolioapp/create">Create a new portfolio</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/portfolioapp/user_portfolios">Your portfolios</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/portfolioapp/welcome">Homepage</a>
+        </li>
+
+
+
+      {% else %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="login">Login</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="signup">Sign up</a>
+        </li>
+
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+<body>
+
+{% block content %}
+{% endblock content %}
+
+</body>
+
+</html>

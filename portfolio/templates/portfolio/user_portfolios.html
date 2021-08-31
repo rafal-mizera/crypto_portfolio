@@ -1,0 +1,43 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="jumbotron" style="background-image: url({% static 'portfolio/bkg/bkg_7.jpg' %}); background-size: cover;">
+        <h1 class="font-weight-bolder text-light">Your portfolios</h1>
+    </div>
+    <table class="table table-white table-hover">
+        {% if portfolios %}
+        <thead>
+            <tr>
+                <th>Portfolio</th>
+                <th>Value</th>
+                <th>Change</th>
+                <th>Change 24h</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in portfolios %}
+        <tr>
+            <th>{{item.name}}</th>
+            <th>{{item.get_portfolio_value}} USD</th>
+            <th>{{item.get_portfolio_change}} %</th>
+            <th>{{item.get_portfolio_change_24h}} %</th>
+            <th><a href="{% url 'portfolio:details' name=item.name %}" style="text-decoration:none;">Show details</a></th>
+
+
+        </tr>
+        {% endfor %}
+        {% else %}
+        <div class="alert alert-info">
+        <strong>You have no portfolios to display!</strong>
+        </div>
+
+        {% endif %}
+
+
+
+        </tbody>
+    </table>
+
+{% endblock content %}

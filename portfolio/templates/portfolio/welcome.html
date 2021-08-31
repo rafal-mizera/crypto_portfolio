@@ -1,0 +1,33 @@
+{%  extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="jumbotron" style="background-image: url({% static 'portfolio/bkg/bkg_7.jpg' %}); background-size: cover;">
+        <h1 class="font-weight-bolder text-light">Welcome! Let's create your own cryptocurrency portfolio!</h1>
+    </div>
+
+
+<table class="table table-white table-hover">
+    <thead>
+        <tr>
+            <th>Cryptocurrency</th>
+            <th>Rate</th>
+            <th>Change 24H</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    {% for item in all_crypto %}
+    <tr>
+        <th>{{item.name}} <img alt="{{item.name}}" src="{% get_static_prefix %}portfolio/{{item.name}}.jpg"></th>
+        <th>{{item.rate}} USD</th>
+        <th>{{item.change}} %</th>
+
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+  <div method="post" class="jumbotron font-weight-bolder text-light" style="background-image: url({% static 'portfolio/bkg/bkg_7.jpg' %}); background-size: cover;">
+    <h1>Sign up</h1>
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="font-weight-bolder text-light">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">Sign up</button>
+  </div>
+  </form>
+
+
+{% endblock content %}

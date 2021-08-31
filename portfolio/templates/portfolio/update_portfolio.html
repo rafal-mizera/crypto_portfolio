@@ -1,0 +1,13 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="jumbotron" style="background-image: url({% static 'portfolio/bkg/bkg_7.jpg' %}); background-size: cover;">
+<form action="" method="post" novalidate class="font-weight-bolder text-light" >
+    {% csrf_token %}
+    {{ form }} USD
+    <input type="submit" value="Submit">
+</form>
+</div>
+
+{% endblock content %}
